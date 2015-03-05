@@ -27,7 +27,7 @@
 	
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		NSData *fileData = [[NSData alloc] initWithData: [handle readDataOfLength: 4096]];
-		CC_MD5_Update (&md5, [fileData bytes], [fileData length]);
+		CC_MD5_Update (&md5, [fileData bytes], (CC_LONG) [fileData length]);
 		
 		if ([fileData length] == 0) {
 			done = YES;
@@ -58,7 +58,7 @@
 	
 	CC_MD5_CTX md5;
 	CC_MD5_Init (&md5);
-	CC_MD5_Update (&md5, [self UTF8String], [self length]);
+	CC_MD5_Update (&md5, [self UTF8String], (CC_LONG) [self length]);
 		
 	unsigned char digest[CC_MD5_DIGEST_LENGTH];
 	CC_MD5_Final (digest, &md5);
